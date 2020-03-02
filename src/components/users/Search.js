@@ -1,7 +1,11 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import PropTypes from 'prop-types'
 
-const Search = ({ clearUsers, showClear, searchUsers, setAlert }) => {
+import GitHubContext from "../../context/gitHub/gitHubContext"
+
+const Search = ({ setAlert }) => {
+    const { clearUsers, searchUsers, users } = useContext(GitHubContext)
+
     const [text, setText] = useState('')
 
     const onSubmit = (event) => {
@@ -29,7 +33,7 @@ const Search = ({ clearUsers, showClear, searchUsers, setAlert }) => {
                 <input type="submit" value="Search" className="btn btn-dark btn-block" />
             </form>
             {
-                showClear && <button className="btn btn-light btn-block" onClick={clearUsers}>Clear</button>
+                users.length > 0 && <button className="btn btn-light btn-block" onClick={clearUsers}>Clear</button>
             }
 
         </div>
@@ -39,8 +43,5 @@ const Search = ({ clearUsers, showClear, searchUsers, setAlert }) => {
 export default Search
 
 Search.propTypes = {
-    searchUsers: PropTypes.func.isRequired,
-    clearUsers: PropTypes.func.isRequired,
-    showClear: PropTypes.bool.isRequired,
     setAlert: PropTypes.func.isRequired
 }
