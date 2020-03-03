@@ -8,8 +8,7 @@ import {
     GET_USER,
     SET_LOADING,
     CLEAR_USERS,
-    GET_REPOS,
-    SET_ALERT
+    GET_REPOS
 } from '../types'
 
 const clientId = process.env.REACT_APP_GITHUB_CLIENT_ID
